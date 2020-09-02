@@ -99,6 +99,8 @@ function cutDeck(cardId) {
     var first_half = cardArray.slice(0,cardId);
     var second_half = cardArray.slice(cardId);
     cardArray = second_half.concat(first_half);
+
+    cardsClicked.length = 0;
     displayDeck(cardArray);
 }
 
@@ -140,12 +142,13 @@ function clicked() {
 
     // Determine selected radio button
     let selected_value = "cut"
-    const rbs = document.querySelectorAll("input[radio]")
+    const rbs = document.querySelectorAll("input[name=radio]")
     for (const rb of rbs) {
         if (rb.checked) {
             selected_value = rb.value
         }
     }
+    console.log(selected_value)
 
     if (selected_value === "cut") {
         cutDeck(cardId)
