@@ -7,6 +7,7 @@ const card_suits = ["C","H","S","D"];
 
 const NUM_ROWS = 4;
 const NUM_COLUMNS = 13
+const RANDOMNESS = 5;
 
 var cardArray = []
 const cardsClicked = []
@@ -75,24 +76,84 @@ function displayDeck(card_array) {
     cardsClicked.length = 0;
 }
 
-function faro() {
+function faroShuffle(type) {
     const middle = cardArray.length / 2;
     var temp_deck = [];
 
+    
     for (var i = 0; i < middle; i++) {
-        temp_deck.push(cardArray[i]);
-        temp_deck.push(cardArray[i + middle])
+        if (type === "out") {
+            temp_deck.push(cardArray[i]);
+            temp_deck.push(cardArray[i + middle])
+        }else{
+            temp_deck.push(cardArray[i + middle])
+            temp_deck.push(cardArray[i]);
+        }
+        
     }
     cardArray = temp_deck;
     displayDeck(cardArray);
 }
 
+function cutDeck(cardId) {
+    var first_half = cardArray.slice(0,cardId);
+    var second_half = cardArray.slice(cardId);
+    cardArray = second_half.concat(first_half);
+    displayDeck(cardArray);
+}
+
+// function riffleShuffle() {
+//     console.log("HELLO")
+
+//     var temp = [];
+    
+//     var split = Math.floor(Math.random() * (RANDOMNESS * 2) - RANDOMNESS);
+//     var middle = cardArray.length / 2 + split;
+
+//     var lhs = 0;
+//     var rhs = middle;
+//     console.log("again")
+
+//     while (lhs < middle || rhs < cardArray.length) {
+//         var rand_left = Math.floor(Math.random() * 2)
+//         console.log("again")
+//         for (var i = 0; (i < rand_left) && (lhs < middle); i++) {
+//             temp.push(cardArray[lhs]);
+//             lhs++;
+//         }
+
+//         var rand_right = Math.floor(Math.random() * 2)
+
+//         for (var i = 0; (i < rand_right) && (rhs < cardArray.length); i++) {
+//             temp.push(cardArray[rhs]);
+//             rhs++;
+//         }
+//         cardArray = temp;
+//         displayDeck(cardArray);
+//     }
+
+    
+// }
+
 function clicked() {
     var cardId = this.getAttribute("data-id")
-    cardsClicked.push(cardId);
 
-    if (cardsClicked.length == 2) {
-        swap_cards();
+    // Determine selected radio button
+    let selected_value = "cut"
+    const rbs = document.querySelectorAll("input[radio]")
+    for (const rb of rbs) {
+        if (rb.checked) {
+            selected_value = rb.value
+        }
+    }
+
+    if (selected_value === "cut") {
+        cutDeck(cardId)
+    }else {
+        cardsClicked.push(cardId);
+        if (cardsClicked.length == 2) {
+            swap_cards();
+        }
     }
     console.log(cardArray[cardId])
 }
