@@ -1,0 +1,10 @@
+table {
+    border-collapse: collapse;
+    position: absolute;
+    left: 20%;
+    top: 50px;
+}
+
+td {
+    cursor: pointer;
+}
