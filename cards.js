@@ -104,38 +104,38 @@ function cutDeck(cardId) {
     displayDeck(cardArray);
 }
 
-// function riffleShuffle() {
-//     console.log("HELLO")
+function riffleShuffle() {
 
-//     var temp = [];
+    var temp = [];
     
-//     var split = Math.floor(Math.random() * (RANDOMNESS * 2) - RANDOMNESS);
-//     var middle = cardArray.length / 2 + split;
+    var split = Math.floor(Math.random() * (RANDOMNESS * 2) - RANDOMNESS);
+    var middle = cardArray.length / 2 + split;
+    console.log(split)
 
-//     var lhs = 0;
-//     var rhs = middle;
-//     console.log("again")
+    var lhs = 0;
+    var rhs = middle;
 
-//     while (lhs < middle || rhs < cardArray.length) {
-//         var rand_left = Math.floor(Math.random() * 2)
-//         console.log("again")
-//         for (var i = 0; (i < rand_left) && (lhs < middle); i++) {
-//             temp.push(cardArray[lhs]);
-//             lhs++;
-//         }
+    while (lhs < middle || rhs < cardArray.length) {
+        var rand_left = Math.floor(Math.random() * 2)
+        console.log(`Rand-left is ${rand_left}`)
 
-//         var rand_right = Math.floor(Math.random() * 2)
+        for (var i = 0; (i < rand_left) && (lhs < middle); i++) {
+            console.log(lhs, cardArray[lhs])
+            temp.push(cardArray[lhs]);
+            lhs++;
+        }
 
-//         for (var i = 0; (i < rand_right) && (rhs < cardArray.length); i++) {
-//             temp.push(cardArray[rhs]);
-//             rhs++;
-//         }
-//         cardArray = temp;
-//         displayDeck(cardArray);
-//     }
+        var rand_right = Math.floor(Math.random() * 2)
+        console.log(`Rand-Right is ${rand_right}`)
+        for (var i = 0; (i < rand_right) && (rhs < cardArray.length); i++) {
+            temp.push(cardArray[rhs]);
+            rhs++;
+        }
+    }
+    cardArray = temp;
+    displayDeck(cardArray);
 
-    
-// }
+}
 
 function clicked() {
     var cardId = this.getAttribute("data-id")

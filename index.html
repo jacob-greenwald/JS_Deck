@@ -8,14 +8,14 @@
 </head>
 <body>
     <button onclick="buildDeck()">New Deck</button>
-    <!-- <button onclick="riffleShuffle()">Riffle Shuffle</button> -->
+    <button onclick="riffleShuffle()">Riffle Shuffle</button>
     <button onclick="faroShuffle('out')">Out Faro</button>
     <button onclick="faroShuffle('in')">In Faro</button>
     
+    <input type="radio" id="swap" name="radio" value="swap" checked>
+    <label for="swap">Swap cards</label>
     <input type="radio" id="cut" name="radio" value="cut">
     <label for="cut">Cut to top</label>
-    <input type="radio" id="swap" name="radio" value="swap">
-    <label for="swap">Swap cards</label>
 
     <table id="table"></table>
    
